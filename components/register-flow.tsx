@@ -4,14 +4,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { registerAction, type RegState } from "@/app/register/actions";
-import { calendarLink, dateRange, dayLabel, timeLabel, type SiteSettings } from "@/lib/settings-shared";
-import { CalIcon, GoogleIcon, Logo, TgIcon, YtIcon } from "@/components/icons";
+import { dateRange, timeLabel, type SiteSettings } from "@/lib/settings-shared";
+import { GoogleIcon, Logo } from "@/components/icons";
 import { LangToggle, useLang } from "@/components/use-lang";
 
 type U = { name: string; email: string; image: string | null } | null;
-type R = { seat: number; name: string; phone: string } | null;
 
-export default function RegisterFlow({ s, user, reg }: { s: SiteSettings; user: U; reg: R }) {
+export default function RegisterFlow({ s, user }: { s: SiteSettings; user: U }) {
   const [lang, setLang] = useLang(s.defaultLang);
   const t = s.text[lang];
   const router = useRouter();
@@ -29,7 +28,14 @@ export default function RegisterFlow({ s, user, reg }: { s: SiteSettings; user: 
     } catch {}
   }, []);
 
-  useEffect(() => { if (state.ok) router.refresh(); }, [state.ok, router]);
+  // A successful submit lands on /thank-you. router.refresh() is kept so the
+  // server component tree re-reads the new registration before we navigate,
+  // otherwise the confirmation can render against a stale cache.
+  useEffect(() => {
+    if (!state.ok) return;
+    router.refresh();
+    router.push("/thank-you");
+  }, [state.ok, router]);
 
   const google = async () => {
     setGLoading(true);
@@ -42,33 +48,7 @@ export default function RegisterFlow({ s, user, reg }: { s: SiteSettings; user: 
   const errMsg = state.error === "phone" ? t.rBadPhone : state.error === "name" ? t.rBadName : state.error === "closed" ? t.rClosed : state.error ? t.rError : "";
 
   let body: React.ReactNode;
-  if (reg && user) {
-    body = (
-      <>
-        <h1>{t.rDone}</h1>
-        <div className="seat">{t.rSeat} #{reg.seat}</div>
-        <p className="lead">{t.rDoneSub}</p>
-        <div className="todo">
-          <a className="btn btn-red" href={s.telegramLink} target="_blank" rel="noopener"><span className="n">1</span><TgIcon />{t.rTg}</a>
-          <a className="btn btn-line" href={s.subLink} target="_blank" rel="noopener"><span className="n">2</span><YtIcon />{t.rSubYt}</a>
-          <div>
-            <div className="btn btn-line" style={{ width: "100%", justifyContent: "flex-start", cursor: "default" }}><span className="n">3</span><CalIcon />{t.rCal}</div>
-            <div className="cal">
-              {s.days.map((d, i) => (
-                <a key={i} target="_blank" rel="noopener" href={calendarLink(`${t.dayL} ${i + 1} — YouTube Monetization Live`, `${t.titles[i] ?? ""}\n${s.subLink}`, d)}>
-                  {t.dayL} {i + 1} · {dayLabel(d.start)}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="who-me">
-          {user.image ? /* eslint-disable-next-line @next/next/no-img-element */ <img src={user.image} alt="" /> : <span className="ph">{user.name.charAt(0)}</span>}
-          <div><b>{reg.name}</b><span>{user.email} · {reg.phone}</span></div>
-        </div>
-      </>
-    );
-  } else if (user) {
+  if (user) {
     body = (
       <>
         <h1 dangerouslySetInnerHTML={{ __html: t.rTitle }} />
