@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 import RegisterFlow from "@/components/register-flow";
 import { db } from "@/lib/db";
 import { getSettings } from "@/lib/settings";
@@ -10,12 +11,20 @@ export const metadata: Metadata = { title: "Register — YouTube Monetization Li
 
 export default async function RegisterPage() {
   const [s, user] = await Promise.all([getSettings(), getCurrentUser()]);
-  const reg = user ? await db.registration.findUnique({ where: { userId: user.id } }) : null;
+
+  // Anyone already registered belongs on the confirmation page — it is the one
+  // place that view lives now, so a returning visitor and someone who has just
+  // submitted the form both land on the same URL.
+  if (user) {
+    const reg = await db.registration.findUnique({ where: { userId: user.id } });
+    if (reg) redirect("/thank-you");
+  }
+
+  // Venue details stay hidden until there is a registration, as before.
   return (
     <RegisterFlow
-      s={reg ? s : hideVenue(s)}
+      s={hideVenue(s)}
       user={user ? { name: user.name, email: user.email, image: user.image } : null}
-      reg={reg ? { seat: reg.seat, name: reg.name, phone: reg.phone } : null}
     />
   );
 }
