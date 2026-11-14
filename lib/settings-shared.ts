@@ -98,7 +98,7 @@ const en: SiteText = {
   rSubmit: "Complete registration", rBadPhone: "Please enter a valid phone number.", rBadName: "Please enter your name.",
   rClosed: "Registration is closed.", rError: "Something went wrong. Please try again.",
   rDone: "You're in! 🎉", rDoneSub: "Your seat is reserved. The live streams on our YouTube channel, @EthioComputerSchool — do these now so you don't miss Day 1:",
-  rSeat: "Seat", rTg: "Join the Telegram group", rSubYt: "Subscribe & turn on 🔔", rCal: "Add to Google Calendar",
+  rSeat: "Seat", rTg: "Join Telegram Channel", rSubYt: "Subscribe & turn on 🔔", rCal: "Add to Google Calendar",
   rSignOut: "Sign out", rBack: "← Back to the event",
 };
 
@@ -167,7 +167,7 @@ const am: SiteText = {
   rSubmit: "ምዝገባውን ያጠናቅቁ", rBadPhone: "እባክዎ ትክክለኛ ስልክ ቁጥር ያስገቡ።", rBadName: "እባክዎ ስምዎን ያስገቡ።",
   rClosed: "ምዝገባው ተዘግቷል።", rError: "ችግር ተፈጥሯል። እባክዎ እንደገና ይሞክሩ።",
   rDone: "ተመዝግበዋል! 🎉", rDoneSub: "ቦታዎ ተይዟል። Live ስልጠናው የሚተላለፈው በ YouTube ቻናላችን @EthioComputerSchool ላይ ነው — Day 1 እንዳያመልጥዎ አሁኑኑ እነዚህን ያድርጉ፦",
-  rSeat: "ቦታ ቁጥር", rTg: "የ Telegram ግሩፑን ይቀላቀሉ", rSubYt: "Subscribe ያድርጉ እና 🔔 ያብሩ", rCal: "Google Calendar ላይ ያስቀምጡ",
+  rSeat: "ቦታ ቁጥር", rTg: "የ Telegram ቻናላችንን ይቀላቀሉ", rSubYt: "Subscribe ያድርጉ እና 🔔 ያብሩ", rCal: "Google Calendar ላይ ያስቀምጡ",
   rSignOut: "ውጣ", rBack: "← ወደ ኢቨንቱ ገጽ",
 };
 
@@ -179,7 +179,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
     { start: "2026-11-22T20:00:00+03:00", end: "2026-11-22T22:30:00+03:00" },
     { start: "2026-11-23T20:00:00+03:00", end: "2026-11-23T22:30:00+03:00" },
   ],
-  telegramLink: "https://t.me/ethiocomputerschool",
+  telegramLink: "https://t.me/ethiocs",
   subLink: "https://youtube.com/@EthioComputerSchool?sub_confirmation=1",
   ytSubs: "300K",
   hostName: "Getabalew Tadiwos",
