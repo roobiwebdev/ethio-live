@@ -306,5 +306,5 @@ textarea.json{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;f
   .bg-logos span{zoom:.6}
 }
 @media (prefers-reduced-motion:reduce){.bg-logos span{animation:none}}
-.login-or{display:flex;align-items:center;gap:12px;margin:18px 0;color:var(--dim);font-size:12px;text-transform:uppercase;letter-spacing:.2em}
-.login-or::before,.login-or::after{content:"";flex:1;height:1px;background:var(--line2)}
+.or-line{display:flex;align-items:center;gap:12px;margin:18px 0;color:var(--dim);font-size:12px;text-transform:uppercase;letter-spacing:.2em}
+.or-line::before,.or-line::after{content:"";flex:1;height:1px;background:var(--line2)}

@@ -17,7 +17,7 @@ type R = { seat: number; name: string; phone: string };
  * All copy comes from the same admin-editable EN/AM settings the rest of the
  * site uses — no strings are hardcoded here.
  */
-export default function ThankYou({ s, user, reg }: { s: SiteSettings; user: U; reg: R }) {
+export default function ThankYou({ s, user, reg, signedIn }: { s: SiteSettings; user: U; reg: R; signedIn: boolean }) {
   const [lang, setLang] = useLang(s.defaultLang);
   const t = s.text[lang];
   const router = useRouter();
@@ -81,7 +81,7 @@ export default function ThankYou({ s, user, reg }: { s: SiteSettings; user: U; r
 
           <div className="rg-foot">
             <Link href="/">{t.rBack}</Link>
-            <button type="button" onClick={signOut}>{t.rSignOut}</button>
+            {signedIn && <button type="button" onClick={signOut}>{t.rSignOut}</button>}
           </div>
         </div>
       </main>

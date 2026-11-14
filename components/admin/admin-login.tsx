@@ -14,7 +14,7 @@ export default function AdminLogin() {
         <h1 style={{ fontSize: 24, marginTop: 18 }}>Admin</h1>
         <p className="lead">Sign in with your admin email and password.</p>
         <PasswordLogin />
-        <span className="login-or">or</span>
+        <span className="or-line">or</span>
         <GoogleLogin />
       </div>
     </main>

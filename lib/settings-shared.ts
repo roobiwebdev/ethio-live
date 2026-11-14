@@ -16,8 +16,8 @@ export type SiteText = {
   whoH: string; who: string[]; getH: string; grid: string[][];
   bio: string; faqH: string; faq: string[][]; finH: string; finP: string; disc: string;
   // register page
-  rTitle: string; rSub: string; rGoogle: string; rName: string; rEmail: string; rPhone: string; rPhoneHint: string;
-  rSubmit: string; rBadPhone: string; rBadName: string; rClosed: string; rError: string;
+  rTitle: string; rSub: string; rPhoneOnly: string; rGoogle: string; rName: string; rEmail: string; rPhone: string; rPhoneHint: string;
+  rSubmit: string; rBadPhone: string; rBadName: string; rBadEmail: string; rClosed: string; rError: string;
   rDone: string; rDoneSub: string; rSeat: string; rTg: string; rSubYt: string; rCal: string; rSignOut: string; rBack: string;
 };
 
@@ -93,9 +93,10 @@ const en: SiteText = {
   finH: "Day 1 starts soon. <em>Be there live.</em>",
   finP: "Register free — the live link is waiting for you on the other side.",
   disc: "YouTube is a trademark of Google LLC. This event is not affiliated with or endorsed by YouTube. Results depend on individual effort; income is not guaranteed.",
-  rTitle: "Reserve your <em>free seat</em>", rSub: "Sign in with your Gmail account, add your phone number, and you're in.",
-  rGoogle: "Continue with Google", rName: "Full name", rEmail: "Gmail", rPhone: "Phone number", rPhoneHint: "e.g. 0911 234 567 or +1 202 555 0100",
-  rSubmit: "Complete registration", rBadPhone: "Please enter a valid phone number.", rBadName: "Please enter your name.",
+  rTitle: "Reserve your <em>free seat</em>", rSub: "Fill in your details, or continue with Google, and you're in.",
+  rPhoneOnly: "One last step — add your phone number so we can send you reminders and the live link.",
+  rGoogle: "Continue with Google", rName: "Full name", rEmail: "Email", rPhone: "Phone number", rPhoneHint: "e.g. 0911 234 567 or +1 202 555 0100",
+  rSubmit: "Complete registration", rBadPhone: "Please enter a valid phone number.", rBadName: "Please enter your name.", rBadEmail: "Please enter a valid email address.",
   rClosed: "Registration is closed.", rError: "Something went wrong. Please try again.",
   rDone: "You're in! 🎉", rDoneSub: "Your seat is reserved. The live streams on our YouTube channel, @EthioComputerSchool — do these now so you don't miss Day 1:",
   rSeat: "Seat", rTg: "Join Telegram Channel", rSubYt: "Subscribe & turn on 🔔", rCal: "Add to Google Calendar",
@@ -162,9 +163,10 @@ const am: SiteText = {
   finH: "Day 1 በቅርቡ ይጀምራል። <em>Live ይገኙ።</em>",
   finP: "በነፃ ይመዝገቡ — የ Live ሊንኩ ከምዝገባው በኋላ ይጠብቅዎታል።",
   disc: "YouTube የ Google LLC የንግድ ምልክት ነው። ይህ ኢቨንት ከ YouTube ጋር ግንኙነት የለውም። ውጤቶች በእያንዳንዱ ሰው ጥረት ይወሰናሉ፤ ገቢ ዋስትና የለውም።",
-  rTitle: "<em>ነፃ ቦታዎን</em> ያስይዙ", rSub: "በ Gmail አካውንትዎ ይግቡ፣ ስልክ ቁጥርዎን ያስገቡ — ተመዝግበዋል።",
-  rGoogle: "በ Google ይቀጥሉ", rName: "ሙሉ ስም", rEmail: "Gmail", rPhone: "ስልክ ቁጥር", rPhoneHint: "ለምሳሌ 0911 234 567 ወይም +1 202 555 0100",
-  rSubmit: "ምዝገባውን ያጠናቅቁ", rBadPhone: "እባክዎ ትክክለኛ ስልክ ቁጥር ያስገቡ።", rBadName: "እባክዎ ስምዎን ያስገቡ።",
+  rTitle: "<em>ነፃ ቦታዎን</em> ያስይዙ", rSub: "መረጃዎን ይሙሉ ወይም በ Google ይቀጥሉ — ተመዝግበዋል።",
+  rPhoneOnly: "የመጨረሻ ደረጃ — Reminder እና የ Live ሊንኩን እንድንልክልዎ ስልክ ቁጥርዎን ያስገቡ።",
+  rGoogle: "በ Google ይቀጥሉ", rName: "ሙሉ ስም", rEmail: "ኢሜይል", rPhone: "ስልክ ቁጥር", rPhoneHint: "ለምሳሌ 0911 234 567 ወይም +1 202 555 0100",
+  rSubmit: "ምዝገባውን ያጠናቅቁ", rBadPhone: "እባክዎ ትክክለኛ ስልክ ቁጥር ያስገቡ።", rBadName: "እባክዎ ስምዎን ያስገቡ።", rBadEmail: "እባክዎ ትክክለኛ ኢሜይል ያስገቡ።",
   rClosed: "ምዝገባው ተዘግቷል።", rError: "ችግር ተፈጥሯል። እባክዎ እንደገና ይሞክሩ።",
   rDone: "ተመዝግበዋል! 🎉", rDoneSub: "ቦታዎ ተይዟል። Live ስልጠናው የሚተላለፈው በ YouTube ቻናላችን @EthioComputerSchool ላይ ነው — Day 1 እንዳያመልጥዎ አሁኑኑ እነዚህን ያድርጉ፦",
   rSeat: "ቦታ ቁጥር", rTg: "የ Telegram ቻናላችንን ይቀላቀሉ", rSubYt: "Subscribe ያድርጉ እና 🔔 ያብሩ", rCal: "Google Calendar ላይ ያስቀምጡ",
