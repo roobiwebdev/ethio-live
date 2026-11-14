@@ -49,9 +49,11 @@ user-facing strings; read them from `s.text[lang]`. Strings may contain `<em>`/`
 `+03:00` offset; helpers in `settings-shared.ts` convert to/from `datetime-local` inputs and render
 Ethiopian-clock labels for Amharic.
 
-**Auth and admin gating.** better-auth with Google only (`lib/auth.ts`, handler at
-`app/api/auth/[...all]/route.ts`). `getCurrentUser()` in `lib/session.ts` is request-cached and sets
-`isAdmin` from the comma-separated `ADMIN_EMAILS` env var. Every admin server action starts with
+**Auth and admin gating.** better-auth (`lib/auth.ts`, handler at `app/api/auth/[...all]/route.ts`)
+with Google for registrants and email + password for admins (sign-up disabled; credential rows are
+seeded directly in the `account` table). `getCurrentUser()` in `lib/session.ts` is request-cached and
+sets `isAdmin` via `lib/admins.ts`: the email is either in the `ADMIN_EMAILS` env var or in the
+`setting` row with key `"admins"` (a JSON array of emails). Every admin server action starts with
 `await assertAdmin()`; admin pages return `<AdminLogin />` when signed out and `notFound()` for
 non-admins (so `/admin` 404s for outsiders).
 
