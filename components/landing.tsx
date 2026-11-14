@@ -107,18 +107,6 @@ export default function Landing({ s, registered }: { s: SiteSettings; registered
                 <img src="/live-poster.jpg" alt="Ethio Computer School — Monetization live" width={1280} height={720} fetchPriority="high" />
                 <div className="p-top"><span className={`p-badge${st === "live" ? " live" : ""}`}>{badge}</span><span className="p-day">{t.dayL} {cur + 1} / {days.length}</span></div>
                 <div className="p-center">{center}</div>
-                <div className="p-bar">
-                  <div className="p-prog"><i /></div>
-                  <div className="p-ctrl">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 9v6h4l5 5V4L9 9H5zm11.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4z" /></svg>
-                    <span className="lv">{badge}</span>
-                    <span className="r">
-                      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.4 13a7.5 7.5 0 0 0 0-2l2.1-1.6-2-3.5-2.5 1a7.6 7.6 0 0 0-1.7-1L15 3h-4l-.3 2.9a7.6 7.6 0 0 0-1.7 1l-2.5-1-2 3.5L6.6 11a7.5 7.5 0 0 0 0 2l-2.1 1.6 2 3.5 2.5-1a7.6 7.6 0 0 0 1.7 1L11 21h4l.3-2.9a7.6 7.6 0 0 0 1.7-1l2.5 1 2-3.5zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)" /></svg>
-                      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z" /></svg>
-                    </span>
-                  </div>
-                </div>
               </div>
               <div className="yt-info">
                 <h3>{t.titles[cur] ?? ""}</h3>
