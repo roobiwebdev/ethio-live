@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "YouTube Monetization Live — Free 3-day event",
     description: "After Feb 1, nothing will be the same. Join 3 nights live online — register free.",
-    images: [{ url: "/live-thumb.jpg", width: 1280, height: 720 }],
+    images: [{ url: "/live-poster.jpg", width: 1280, height: 720 }],
   },
 };
 

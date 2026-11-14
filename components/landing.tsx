@@ -104,7 +104,7 @@ export default function Landing({ s, registered }: { s: SiteSettings; registered
               </div>
               <div className={`player${st === "live" ? "" : " idle"}`}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/live-thumb.jpg" alt="Ethio Computer School — Monetization live" width={1280} height={720} fetchPriority="high" />
+                <img src="/live-poster.jpg" alt="Ethio Computer School — Monetization live" width={1280} height={720} fetchPriority="high" />
                 <div className="p-top"><span className={`p-badge${st === "live" ? " live" : ""}`}>{badge}</span><span className="p-day">{t.dayL} {cur + 1} / {days.length}</span></div>
                 <div className="p-center">{center}</div>
                 <div className="p-bar">
@@ -213,7 +213,7 @@ export default function Landing({ s, registered }: { s: SiteSettings; registered
         <section className="sec host">
           <div className="in">
             <span className="label rv"><b>05</b> Your host</span>
-            <div className="host-photo rv">{/* eslint-disable-next-line @next/next/no-img-element */}<img src="/live-thumb.jpg" alt={s.hostName} width={1280} height={720} loading="lazy" /></div>
+            <div className="host-photo rv">{/* eslint-disable-next-line @next/next/no-img-element */}<img src="/host-poster.jpg" alt={s.hostName} width={1080} height={1180} loading="lazy" /></div>
             <div className="host-name rv">{s.hostName}</div>
             <div className="host-role rv">{s.hostRole}</div>
             <p className="rv">{fill(t.bio, vars)}</p>
