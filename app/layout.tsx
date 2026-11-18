@@ -1,4 +1,5 @@
 import BgLogos from "@/components/bg-logos";
+import MetaPixel from "@/components/meta-pixel";
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, Noto_Sans_Ethiopic } from "next/font/google";
 import "./globals.css";
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <div className="bg" aria-hidden="true"><BgLogos /></div>
         {children}
+        <MetaPixel />
       </body>
     </html>
   );

@@ -9,7 +9,7 @@ import { GoogleIcon, Logo } from "@/components/icons";
 import { LangToggle, useLang } from "@/components/use-lang";
 
 type SignedInUser = { name: string; email: string; image: string | null };
-type RegisterFormProps = { t: SiteText; source: string; onDone: () => void };
+type RegisterFormProps = { t: SiteText; source: string };
 
 const SOURCE_STORAGE_KEY = "ecs-src";
 
@@ -19,10 +19,6 @@ export default function RegisterFlow({ s, user }: { s: SiteSettings; user: Signe
   const router = useRouter();
   const source = useReferralSource();
 
-  const goToThankYou = () => {
-    router.refresh();
-    router.push("/thank-you");
-  };
   const signOut = async () => { await authClient.signOut(); router.refresh(); };
 
   return (
@@ -37,8 +33,8 @@ export default function RegisterFlow({ s, user }: { s: SiteSettings; user: Signe
         <div className="rg-card">
           <h1 dangerouslySetInnerHTML={{ __html: t.rTitle }} />
           {user
-            ? <PhoneOnlyForm t={t} source={source} onDone={goToThankYou} user={user} />
-            : <GuestRegistration t={t} s={s} lang={lang} source={source} onDone={goToThankYou} />}
+            ? <PhoneOnlyForm t={t} source={source} user={user} />
+            : <GuestRegistration t={t} s={s} lang={lang} source={source} />}
           <div className="rg-foot">
             <Link href="/">{t.rBack}</Link>
             {user && <button type="button" onClick={signOut}>{t.rSignOut}</button>}
@@ -49,9 +45,8 @@ export default function RegisterFlow({ s, user }: { s: SiteSettings; user: Signe
   );
 }
 
-function PhoneOnlyForm({ t, source, onDone, user }: RegisterFormProps & { user: SignedInUser }) {
+function PhoneOnlyForm({ t, source, user }: RegisterFormProps & { user: SignedInUser }) {
   const [state, action, pending] = useActionState<RegState, FormData>(registerAction, {});
-  useEffect(() => { if (state.ok) onDone(); }, [state.ok, onDone]);
   return (
     <>
       <p className="lead">{t.rPhoneOnly}</p>
@@ -72,10 +67,9 @@ function PhoneOnlyForm({ t, source, onDone, user }: RegisterFormProps & { user: 
   );
 }
 
-function GuestRegistration({ t, s, lang, source, onDone }: RegisterFormProps & { s: SiteSettings; lang: Lang }) {
+function GuestRegistration({ t, s, lang, source }: RegisterFormProps & { s: SiteSettings; lang: Lang }) {
   const [state, action, pending] = useActionState<RegState, FormData>(registerGuestAction, {});
   const [googlePending, setGooglePending] = useState(false);
-  useEffect(() => { if (state.ok) onDone(); }, [state.ok, onDone]);
 
   const continueWithGoogle = async () => {
     setGooglePending(true);

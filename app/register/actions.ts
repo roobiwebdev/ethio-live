@@ -1,14 +1,17 @@
 "use server";
 import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { z } from "zod";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { rememberGuestRegistration } from "@/lib/guest-registration";
 import { normalizePhone } from "@/lib/phone";
+import { THANK_YOU_AFTER_REGISTRATION } from "@/lib/registration-redirect";
 import { getSettings } from "@/lib/settings";
 
-export type RegState = { ok?: boolean; error?: "auth" | "closed" | "phone" | "name" | "email" | "server" };
+export type RegState = { error?: "auth" | "closed" | "phone" | "name" | "email" | "server" };
+
 
 const NAME_MAX_LENGTH = 100;
 const SOURCE_MAX_LENGTH = 120;
@@ -40,7 +43,7 @@ export async function registerAction(_prev: RegState, form: FormData): Promise<R
     return { error: "server" };
   }
   refreshRegistrationPages();
-  return { ok: true };
+  redirect(THANK_YOU_AFTER_REGISTRATION);
 }
 
 export async function registerGuestAction(_prev: RegState, form: FormData): Promise<RegState> {
@@ -65,7 +68,7 @@ export async function registerGuestAction(_prev: RegState, form: FormData): Prom
     return { error: "server" };
   }
   refreshRegistrationPages();
-  return { ok: true };
+  redirect(THANK_YOU_AFTER_REGISTRATION);
 }
 
 async function registrationAccepts(alreadyRegistered: boolean): Promise<boolean> {

@@ -1,13 +1,17 @@
 "use client";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { calendarLink, dayLabel, type SiteSettings } from "@/lib/settings-shared";
 import { CalIcon, Logo, TgIcon, YtIcon } from "@/components/icons";
+import { trackLead } from "@/components/meta-pixel";
 import { LangToggle, useLang } from "@/components/use-lang";
 
 type U = { name: string; email: string; image: string | null };
 type R = { seat: number; name: string; phone: string };
+
+const LEAD_EVENT_NAME = "YouTube Monetization Live";
 
 /**
  * Confirmation page shown once a registration exists. This used to be a branch
@@ -17,10 +21,19 @@ type R = { seat: number; name: string; phone: string };
  * All copy comes from the same admin-editable EN/AM settings the rest of the
  * site uses — no strings are hardcoded here.
  */
-export default function ThankYou({ s, user, reg, signedIn }: { s: SiteSettings; user: U; reg: R; signedIn: boolean }) {
+export default function ThankYou({ s, user, reg, signedIn, justRegistered }: { s: SiteSettings; user: U; reg: R; signedIn: boolean; justRegistered: boolean }) {
   const [lang, setLang] = useLang(s.defaultLang);
   const t = s.text[lang];
   const router = useRouter();
+
+  const leadSent = useRef(false);
+
+  useEffect(() => {
+    if (!justRegistered || leadSent.current) return;
+    leadSent.current = true;
+    trackLead(LEAD_EVENT_NAME);
+    router.replace("/thank-you");
+  }, [justRegistered, router]);
 
   const signOut = async () => {
     await authClient.signOut();

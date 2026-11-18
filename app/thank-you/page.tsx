@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import ThankYou from "@/components/thank-you";
+import { JUST_REGISTERED_PARAM } from "@/lib/registration-redirect";
 import { db } from "@/lib/db";
 import { findGuestRegistration } from "@/lib/guest-registration";
 import { getSettings } from "@/lib/settings";
@@ -12,8 +13,10 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default async function ThankYouPage() {
-  const [s, user] = await Promise.all([getSettings(), getCurrentUser()]);
+type SearchParams = Promise<Record<string, string | string[] | undefined>>;
+
+export default async function ThankYouPage({ searchParams }: { searchParams: SearchParams }) {
+  const [s, user, params] = await Promise.all([getSettings(), getCurrentUser(), searchParams]);
 
   const reg = user
     ? await db.registration.findUnique({ where: { userId: user.id } })
@@ -30,6 +33,7 @@ export default async function ThankYouPage() {
       user={identity}
       reg={{ seat: reg.seat, name: reg.name, phone: reg.phone }}
       signedIn={user !== null}
+      justRegistered={params[JUST_REGISTERED_PARAM] === "1"}
     />
   );
 }
