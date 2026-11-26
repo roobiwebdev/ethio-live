@@ -308,3 +308,13 @@ textarea.json{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;f
 @media (prefers-reduced-motion:reduce){.bg-logos span{animation:none}}
 .or-line{display:flex;align-items:center;gap:12px;margin:18px 0;color:var(--dim);font-size:12px;text-transform:uppercase;letter-spacing:.2em}
 .or-line::before,.or-line::after{content:"";flex:1;height:1px;background:var(--line2)}
+.roadmap-dl{width:100%;margin-top:22px}
+.gift{margin-top:26px;padding:18px 16px;border:1px solid var(--line2);border-radius:16px;background:rgba(255,255,255,.03)}
+.gift h2{font-size:17px;letter-spacing:-.01em}
+.gift p{color:var(--muted);font-size:14px;margin-top:8px}
+.gift .btn-white{width:100%;margin-top:14px}
+.coupon{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+.coupon-label{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:.14em}
+.coupon code{font-size:22px;font-weight:700;letter-spacing:.18em;padding:6px 14px;border:1px dashed var(--red);border-radius:10px;color:var(--text)}
+.rg-foot a{display:inline-flex;align-items:center;gap:6px}
+.rg-foot a svg{width:16px;height:16px}
